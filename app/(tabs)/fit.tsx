@@ -81,14 +81,10 @@ export default function Fit() {
     loadStepsFromDB();
   }, [db]);
 
-  const today = new Date();
-  today.setDate(today.getDate() - 1);
-
   useEffect(() => {
     isPedometerSupported();
     const startStepCounter = () => {
-      startStepCounterUpdate(today, (data) => {
-        console.log("steps", data.steps);
+      startStepCounterUpdate(new Date(), (data) => {
         if (initialSensorValue.current === null) {
           initialSensorValue.current = data.steps;
           return;
